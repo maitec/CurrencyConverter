@@ -1,0 +1,35 @@
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="form-group">
+                <label for="amount">Ingrese cantidad</label>
+                <input type="number" class="form-control form-control-lg" [(ngModel)]="amount" (input)="convert()" id="amount" placeholder="Ingrese cantidad...">
+              </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="form-group">
+                <label for="from">De</label>
+                <select id="from" class="form-control form-control-lg" [(ngModel)]="from" (change)="convert()">
+                    <option value="from" selected hidden>{{from}}</option>
+                    <option *ngFor="let currency of currencies | sortBy:'asc':'id'">{{ currency.id }}</option>
+                </select>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="form-group">
+                <label for="to">A</label>
+                <select id="to" class="form-control form-control-lg" [(ngModel)]="to" (change)="convert()">
+                    <option value="to" selected hidden>{{to}}</option>
+                    <option *ngFor="let currency of currencies | sortBy:'asc':'id'">{{ currency.id }}</option>
+                </select>
+            </div>
+        </div>
+    </div>
+    <h5 class="text-center mt-3">
+        <span class="badge bg-success">{{ amount }}  {{ from }}</span>
+        <span class="badge bg-secondary">SON</span>
+        <span class="badge bg-success">{{ total | number: '0.0-2'}} {{ to }}</span>
+    </h5>
+</div>
